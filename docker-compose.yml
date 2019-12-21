@@ -1,0 +1,33 @@
+version: '3'
+services:
+    mysql:
+        image: database/sakila
+        ports:
+            - "3306:3306"
+    grafana:
+        image: grafana/grafana
+        ports: 
+            - "3000:3000"
+        links:
+            - 'prometheus'
+        volumes:
+            - grafana-storage:/var/lib/grafana
+    prometheus:
+        image: mysql/prometheus
+        ports: 
+            - "9090:9090"
+        volumes:
+            - prometheus-storage:/prometheus
+    exporter:
+        image: prom/mysqld-exporter
+        ports: 
+            - "9104:9104"
+        links: 
+            - 'mysql'
+            - 'prometheus'
+        environment:
+            DATA_SOURCE_NAME: "root:root@(mysql:3306)/"
+
+volumes:
+    grafana-storage:
+    prometheus-storage:
