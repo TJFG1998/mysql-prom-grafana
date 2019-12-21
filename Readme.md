@@ -10,10 +10,10 @@ In this repository is a template of a fully functional docker based database ana
 
 # Volumes
 
-`docker volume create grafana-storage`
-`docker volume create prometheus-storage`
+- `docker volume create grafana-storage`
+- `docker volume create prometheus-storage`
 
 # Start and Stop
 
-To start -> `docker-compose up -d`
-To stop -> `docker-compose down -d`
+- To start -> `docker-compose up -d`
+- To stop -> `docker-compose down -d`
